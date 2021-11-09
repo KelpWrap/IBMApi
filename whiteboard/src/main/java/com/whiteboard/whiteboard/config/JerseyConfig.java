@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-@ApplicationPath("/imageclient")
+@ApplicationPath("/whiteboard")
 public class JerseyConfig extends ResourceConfig {
   @PostConstruct
   public void init() {

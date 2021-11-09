@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import com.whiteboard.whiteboard.CatalogUser;
 
 @Component
-@Path("/user")
+@Path("/users")
 @Produces("application/json")
 public class CatalogUserController {
   @GET
