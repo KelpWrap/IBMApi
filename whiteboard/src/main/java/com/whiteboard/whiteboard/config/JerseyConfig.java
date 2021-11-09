@@ -7,8 +7,6 @@ import com.whiteboard.whiteboard.API.controllers.CatalogPostController;
 import com.whiteboard.whiteboard.API.controllers.CatalogUserController;
 
 import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.server.wadl.internal.WadlResource;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component

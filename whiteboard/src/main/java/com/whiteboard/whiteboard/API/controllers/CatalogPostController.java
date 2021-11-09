@@ -1,5 +1,6 @@
 package com.whiteboard.whiteboard.API.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,10 +47,24 @@ public class CatalogPostController {
 
   @PUT
   @Path("/{post-id}")
-  public CatalogPost replacePost(@PathParam("post-id") String postId, CatalogPost post) {return null;}
+  public CatalogPost replacePost(@PathParam("post-id") String postId, CatalogPost post) {
+    System.out.println(post.toString());
+    post.setPostBody(post.getPostBody()+" replaced");
+    return post;
+  }
   @PATCH
   @Path("/{post-id}")
-  public CatalogPost updatePost(@PathParam("post-id") String postId, CatalogPost post) {return null;}
+  public CatalogPost updatePost(@PathParam("post-id") String postId, CatalogPost post) {
+    System.out.println(post.toString());
+    post.setPostBody(post.getPostBody()+" updated");
+    CatalogMetaDatum val = post.getMetaData().get(0);
+    val.setName("patch");
+    val.setValue("patch-value");
+    List<CatalogMetaDatum> theList = new ArrayList<CatalogMetaDatum>();
+    theList.add(val);
+    post.setMetaData(theList);
+    return post;
+  }
   @DELETE
   @Path("/{post-id}")
   public Response deletePost(@PathParam("post-id") String postId) {return null;}
