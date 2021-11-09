@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "CatalogClient",
+    "description": "A Client from Image catalog",
+    "type": "object",
+    "properties": {
+      "post-id": {
+      "description": "The unique identifier for a post.",
+      "type": "string"
+      },
+      "post-userid": {
+        "description": "The unique Identifier of the author.",
+        "type": "string"
+      },
+      "post-body": {
+        "description": "Contains the text of the post.",
+        "type": "string"
+      },
+      "meta-data": {
+        "description": "Metadata item describing resource.",
+        "type": "array",
+         "items": {
+           "type": "object",
+           "title": "CatalogMetaDatum",
+           "description": "The meta data object comprising the array.",
+           "properties": {
+             "name": {
+               "type": "string",
+               "description": "Meta data element property name."
+             },
+             "value": {
+               "type": "string",
+               "description": "Meta data element property value."
+             }
+           }
+         }
+       }
+     }
+  }
