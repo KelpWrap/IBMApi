@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "post-body",
     "meta-data"
 })
-public class CatalogClient {
+public class CatalogPost {
 
     /**
      * The unique identifier for a post.
@@ -128,7 +128,7 @@ public class CatalogClient {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(CatalogClient.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(CatalogPost.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("postId");
         sb.append('=');
         sb.append(((this.postId == null)?"<null>":this.postId));
@@ -168,10 +168,10 @@ public class CatalogClient {
         if (other == this) {
             return true;
         }
-        if ((other instanceof CatalogClient) == false) {
+        if ((other instanceof CatalogPost) == false) {
             return false;
         }
-        CatalogClient rhs = ((CatalogClient) other);
+        CatalogPost rhs = ((CatalogPost) other);
         return (((((this.postUserid == rhs.postUserid)||((this.postUserid!= null)&&this.postUserid.equals(rhs.postUserid)))&&((this.metaData == rhs.metaData)||((this.metaData!= null)&&this.metaData.equals(rhs.metaData))))&&((this.postId == rhs.postId)||((this.postId!= null)&&this.postId.equals(rhs.postId))))&&((this.postBody == rhs.postBody)||((this.postBody!= null)&&this.postBody.equals(rhs.postBody))));
     }
 
