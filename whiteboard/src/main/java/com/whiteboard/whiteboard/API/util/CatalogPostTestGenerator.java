@@ -3,7 +3,7 @@ package com.whiteboard.whiteboard.API.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.whiteboard.whiteboard.CatalogMetaDatum;
+import com.whiteboard.whiteboard.CatalogMetaDataPost;
 import com.whiteboard.whiteboard.CatalogPost;
 
 public class CatalogPostTestGenerator {
@@ -12,9 +12,9 @@ public class CatalogPostTestGenerator {
       List<CatalogPost> posts = new ArrayList<CatalogPost>();
       for(int i = 0; i < 20; i++) {
         CatalogPost post = new CatalogPost();
-        List<CatalogMetaDatum> metaData = new ArrayList<CatalogMetaDatum>();
+        List<CatalogMetaDataPost> metaData = new ArrayList<CatalogMetaDataPost>();
         for(int k = 0; k < 10; k++) {
-          CatalogMetaDatum item = new CatalogMetaDatum();
+          CatalogMetaDataPost item = new CatalogMetaDataPost();
           item.setName("name"+k);
           item.setValue("value" + k);
           metaData.add(item);
@@ -30,9 +30,9 @@ public class CatalogPostTestGenerator {
 
     public static CatalogPost generateTestPost(String postId){
         CatalogPost post = new CatalogPost();
-        List<CatalogMetaDatum> metaData = new ArrayList<CatalogMetaDatum>();
+        List<CatalogMetaDataPost> metaData = new ArrayList<CatalogMetaDataPost>();
         for(int k = 0; k < 10; k++) {
-          CatalogMetaDatum item = new CatalogMetaDatum();
+          CatalogMetaDataPost item = new CatalogMetaDataPost();
           item.setName("name"+k);
           item.setValue("value" + k);
           metaData.add(item);

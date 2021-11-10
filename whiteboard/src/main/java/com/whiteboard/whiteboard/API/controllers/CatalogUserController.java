@@ -16,7 +16,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import org.springframework.stereotype.Component;
 
-import com.whiteboard.whiteboard.CatalogMetaDatum;
+import com.whiteboard.whiteboard.CatalogMetaDataPost;
 import com.whiteboard.whiteboard.CatalogUser;
 import com.whiteboard.whiteboard.API.util.CatalogUserTestGenerator;
 
@@ -32,9 +32,9 @@ public class CatalogUserController {
 
   @GET
   public List<CatalogUser> getUsers(@QueryParam("meta-data") List<String> userMetadata) {
-    List<CatalogMetaDatum> metaData = userMetadata.stream().map(c -> {
+    List<CatalogMetaDataPost> metaData = userMetadata.stream().map(c -> {
       String[] nameValue = c.split("=");
-      CatalogMetaDatum item = new CatalogMetaDatum();
+      CatalogMetaDataPost item = new CatalogMetaDataPost();
       item.setName(nameValue[0]);
       item.setValue(nameValue[1]);
       return item;
@@ -53,19 +53,21 @@ public class CatalogUserController {
     user.setUserId(user.getUserId()+" replaced");
     return user;
   }
+
   @PATCH
   @Path("/{user-id}")
   public CatalogUser updateUser(@PathParam("user-id") String userId, CatalogUser user) {
     System.out.println(user.toString());
     user.setUserId(user.getUserId()+" updated");
-    CatalogMetaDatum val = user.getMetaData().get(0);
+    CatalogMetaDataPost val = user.getMetaData().get(0);
     val.setName("patch");
     val.setValue("patch-value");
-    List<CatalogMetaDatum> theList = new ArrayList<CatalogMetaDatum>();
+    List<CatalogMetaDataPost> theList = new ArrayList<CatalogMetaDataPost>();
     theList.add(val);
     user.setMetaData(theList);
     return user;
   }
+  
   @DELETE
   @Path("/{user-id}")
   public Response deleteUser(@PathParam("user-id") String userId) {return null;}

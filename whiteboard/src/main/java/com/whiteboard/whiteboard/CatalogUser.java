@@ -67,7 +67,7 @@ public class CatalogUser {
      */
     @JsonProperty("meta-data")
     @JsonPropertyDescription("Metadata item describing resource.")
-    private List<CatalogMetaDatum> metaData = new ArrayList<CatalogMetaDatum>();
+    private List<CatalogMetaDataPost> metaData = new ArrayList<CatalogMetaDataPost>();
 
     /**
      * The unique identifier for a user.
@@ -164,7 +164,7 @@ public class CatalogUser {
      * 
      */
     @JsonProperty("meta-data")
-    public List<CatalogMetaDatum> getMetaData() {
+    public List<CatalogMetaDataPost> getMetaData() {
         return metaData;
     }
 
@@ -173,7 +173,7 @@ public class CatalogUser {
      * 
      */
     @JsonProperty("meta-data")
-    public void setMetaData(List<CatalogMetaDatum> metaData) {
+    public void setMetaData(List<CatalogMetaDataPost> metaData) {
         this.metaData = metaData;
     }
 

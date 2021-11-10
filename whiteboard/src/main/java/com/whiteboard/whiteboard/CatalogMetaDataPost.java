@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "name",
     "value"
 })
-public class CatalogMetaDatum {
+public class CatalogMetaDataPost {
 
     /**
      * Meta data element property name.
@@ -74,7 +74,7 @@ public class CatalogMetaDatum {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(CatalogMetaDatum.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(CatalogMetaDataPost.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
@@ -104,10 +104,10 @@ public class CatalogMetaDatum {
         if (other == this) {
             return true;
         }
-        if ((other instanceof CatalogMetaDatum) == false) {
+        if ((other instanceof CatalogMetaDataPost) == false) {
             return false;
         }
-        CatalogMetaDatum rhs = ((CatalogMetaDatum) other);
+        CatalogMetaDataPost rhs = ((CatalogMetaDataPost) other);
         return (((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&((this.value == rhs.value)||((this.value!= null)&&this.value.equals(rhs.value))));
     }
 
