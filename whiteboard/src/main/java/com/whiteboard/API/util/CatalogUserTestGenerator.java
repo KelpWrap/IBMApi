@@ -1,11 +1,11 @@
-package com.whiteboard.whiteboard.API.util;
+package com.whiteboard.API.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.whiteboard.whiteboard.CatalogMetaDataPost;
-import com.whiteboard.whiteboard.CatalogUser;
-import com.whiteboard.whiteboard.SecurityEnum;
+import com.whiteboard.SecurityEnum;
+import com.whiteboard.elements.CatalogMetadata;
+import com.whiteboard.elements.CatalogUser;
 
 public class CatalogUserTestGenerator {
     public static List<CatalogUser> generateTestUsers()
@@ -13,9 +13,9 @@ public class CatalogUserTestGenerator {
       List<CatalogUser> users = new ArrayList<CatalogUser>();
       for(int i = 0; i < 20; i++) {
         CatalogUser user = new CatalogUser();
-        List<CatalogMetaDataPost> metaData = new ArrayList<CatalogMetaDataPost>();
+        List<CatalogMetadata> metaData = new ArrayList<CatalogMetadata>();
         for(int k = 0; k < 10; k++) {
-          CatalogMetaDataPost item = new CatalogMetaDataPost();
+          CatalogMetadata item = new CatalogMetadata();
           item.setName("name"+k);
           item.setValue("value" + k);
           metaData.add(item);
@@ -32,9 +32,9 @@ public class CatalogUserTestGenerator {
 
     public static CatalogUser generateTestUser(String userId){
         CatalogUser user = new CatalogUser();
-        List<CatalogMetaDataPost> metaData = new ArrayList<CatalogMetaDataPost>();
+        List<CatalogMetadata> metaData = new ArrayList<CatalogMetadata>();
         for(int k = 0; k < 10; k++) {
-          CatalogMetaDataPost item = new CatalogMetaDataPost();
+          CatalogMetadata item = new CatalogMetadata();
           item.setName("name"+k);
           item.setValue("value" + k);
           metaData.add(item);

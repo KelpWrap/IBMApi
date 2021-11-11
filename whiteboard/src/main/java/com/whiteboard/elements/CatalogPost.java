@@ -1,5 +1,5 @@
 
-package com.whiteboard.whiteboard;
+package com.whiteboard.elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "post-body",
     "meta-data"
 })
-public class CatalogPost {
+public class CatalogPost implements Element{
 
     /**
      * The unique identifier for a post.
@@ -51,7 +51,7 @@ public class CatalogPost {
      */
     @JsonProperty("meta-data")
     @JsonPropertyDescription("Metadata item describing resource.")
-    private List<CatalogMetaDataPost> metaData = new ArrayList<CatalogMetaDataPost>();
+    private List<CatalogMetadata> metaData = new ArrayList<CatalogMetadata>();
 
     /**
      * The unique identifier for a post.
@@ -112,7 +112,7 @@ public class CatalogPost {
      * 
      */
     @JsonProperty("meta-data")
-    public List<CatalogMetaDataPost> getMetaData() {
+    public List<CatalogMetadata> getMetaData() {
         return metaData;
     }
 
@@ -121,7 +121,7 @@ public class CatalogPost {
      * 
      */
     @JsonProperty("meta-data")
-    public void setMetaData(List<CatalogMetaDataPost> metaData) {
+    public void setMetaData(List<CatalogMetadata> metaData) {
         this.metaData = metaData;
     }
 

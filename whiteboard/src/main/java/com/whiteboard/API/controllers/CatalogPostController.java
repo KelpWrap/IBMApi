@@ -1,4 +1,4 @@
-package com.whiteboard.whiteboard.API.controllers;
+package com.whiteboard.API.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import org.springframework.stereotype.Component;
 
-import com.whiteboard.whiteboard.CatalogMetaDataPost;
-import com.whiteboard.whiteboard.CatalogPost;
-import com.whiteboard.whiteboard.API.util.CatalogPostTestGenerator;
+import com.whiteboard.API.util.CatalogPostTestGenerator;
+import com.whiteboard.elements.CatalogMetadata;
+import com.whiteboard.elements.CatalogPost;
 
 @Component
 @Path("/post")
@@ -31,9 +31,9 @@ public class CatalogPostController {
 
   @GET
   public List<CatalogPost> getPosts(@QueryParam("meta-data") List<String> postMetadata) {
-    List<CatalogMetaDataPost> metaData = postMetadata.stream().map(c -> {
+    List<CatalogMetadata> metaData = postMetadata.stream().map(c -> {
       String[] nameValue = c.split("=");
-      CatalogMetaDataPost item = new CatalogMetaDataPost();
+      CatalogMetadata item = new CatalogMetadata();
       item.setName(nameValue[0]);
       item.setValue(nameValue[1]);
       return item;
@@ -58,10 +58,10 @@ public class CatalogPostController {
   public CatalogPost updatePost(@PathParam("post-id") String postId, CatalogPost post) {
     System.out.println(post.toString());
     post.setPostBody(post.getPostBody()+" updated");
-    CatalogMetaDataPost val = post.getMetaData().get(0);
+    CatalogMetadata val = post.getMetaData().get(0);
     val.setName("patch");
     val.setValue("patch-value");
-    List<CatalogMetaDataPost> theList = new ArrayList<CatalogMetaDataPost>();
+    List<CatalogMetadata> theList = new ArrayList<CatalogMetadata>();
     theList.add(val);
     post.setMetaData(theList);
     return post;

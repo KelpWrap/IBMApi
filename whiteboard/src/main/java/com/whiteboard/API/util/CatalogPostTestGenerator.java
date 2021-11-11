@@ -1,10 +1,10 @@
-package com.whiteboard.whiteboard.API.util;
+package com.whiteboard.API.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.whiteboard.whiteboard.CatalogMetaDataPost;
-import com.whiteboard.whiteboard.CatalogPost;
+import com.whiteboard.elements.CatalogMetadata;
+import com.whiteboard.elements.CatalogPost;
 
 public class CatalogPostTestGenerator {
     public static List<CatalogPost> generateTestPosts()
@@ -12,9 +12,9 @@ public class CatalogPostTestGenerator {
       List<CatalogPost> posts = new ArrayList<CatalogPost>();
       for(int i = 0; i < 20; i++) {
         CatalogPost post = new CatalogPost();
-        List<CatalogMetaDataPost> metaData = new ArrayList<CatalogMetaDataPost>();
+        List<CatalogMetadata> metaData = new ArrayList<CatalogMetadata>();
         for(int k = 0; k < 10; k++) {
-          CatalogMetaDataPost item = new CatalogMetaDataPost();
+          CatalogMetadata item = new CatalogMetadata();
           item.setName("name"+k);
           item.setValue("value" + k);
           metaData.add(item);
@@ -30,9 +30,9 @@ public class CatalogPostTestGenerator {
 
     public static CatalogPost generateTestPost(String postId){
         CatalogPost post = new CatalogPost();
-        List<CatalogMetaDataPost> metaData = new ArrayList<CatalogMetaDataPost>();
+        List<CatalogMetadata> metaData = new ArrayList<CatalogMetadata>();
         for(int k = 0; k < 10; k++) {
-          CatalogMetaDataPost item = new CatalogMetaDataPost();
+          CatalogMetadata item = new CatalogMetadata();
           item.setName("name"+k);
           item.setValue("value" + k);
           metaData.add(item);

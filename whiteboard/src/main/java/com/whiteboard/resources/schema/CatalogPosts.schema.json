@@ -24,6 +24,14 @@
            "title": "CatalogMetaDatum",
            "description": "The meta data object comprising the array.",
            "properties": {
+             "user_id": {
+               "type": "integer",
+               "description": "Meta data eleement property user_id"
+             },
+             "post_id": {
+               "type": "integer",
+               "description": "Meta data eleement property post_id"
+             },
              "name": {
                "type": "string",
                "description": "Meta data element property name."

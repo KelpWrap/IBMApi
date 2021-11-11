@@ -1,4 +1,4 @@
-package com.whiteboard.whiteboard;
+package com.whiteboard;
 
 public enum SecurityEnum {
     USER,

@@ -1,4 +1,4 @@
-package com.whiteboard.whiteboard.helpers;
+package com.whiteboard.helpers;
 
 import java.util.List;
 import java.util.Scanner;
