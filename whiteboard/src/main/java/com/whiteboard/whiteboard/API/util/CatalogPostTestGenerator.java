@@ -1,10 +1,10 @@
-package com.whiteboard.API.util;
+package com.whiteboard.whiteboard.API.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.whiteboard.elements.CatalogMetadata;
-import com.whiteboard.elements.CatalogPost;
+import com.whiteboard.whiteboard.elements.CatalogMetadata;
+import com.whiteboard.whiteboard.elements.CatalogPost;
 
 public class CatalogPostTestGenerator {
     public static List<CatalogPost> generateTestPosts()

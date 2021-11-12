@@ -1,5 +1,5 @@
 
-package com.whiteboard.elements;
+package com.whiteboard.whiteboard.elements;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

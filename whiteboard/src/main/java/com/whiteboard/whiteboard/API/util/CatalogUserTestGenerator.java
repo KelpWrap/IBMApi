@@ -1,11 +1,11 @@
-package com.whiteboard.API.util;
+package com.whiteboard.whiteboard.API.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.whiteboard.SecurityEnum;
-import com.whiteboard.elements.CatalogMetadata;
-import com.whiteboard.elements.CatalogUser;
+import com.whiteboard.whiteboard.SecurityEnum;
+import com.whiteboard.whiteboard.elements.CatalogMetadata;
+import com.whiteboard.whiteboard.elements.CatalogUser;
 
 public class CatalogUserTestGenerator {
     public static List<CatalogUser> generateTestUsers()

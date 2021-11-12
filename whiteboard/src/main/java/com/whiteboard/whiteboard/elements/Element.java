@@ -1,4 +1,4 @@
-package com.whiteboard.elements;
+package com.whiteboard.whiteboard.elements;
 
 public interface Element {
 

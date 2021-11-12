@@ -1,5 +1,5 @@
 
-package com.whiteboard.elements;
+package com.whiteboard.whiteboard.elements;
 
 import java.util.ArrayList;
 import java.util.List;

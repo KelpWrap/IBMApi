@@ -1,10 +1,10 @@
-package com.whiteboard.config;
+package com.whiteboard.whiteboard.config;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 
-import com.whiteboard.API.controllers.CatalogPostController;
-import com.whiteboard.API.controllers.CatalogUserController;
+import com.whiteboard.whiteboard.API.controllers.CatalogPostController;
+import com.whiteboard.whiteboard.API.controllers.CatalogUserController;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;

@@ -1,14 +1,16 @@
-package com.whiteboard.helpers;
+package com.whiteboard.whiteboard.helpers;
 
 import java.util.List;
 import java.util.Scanner;
+
+import com.whiteboard.whiteboard.dbAdapter.DbAdapter;
 
 
 
 
 public class LoginHelper {
     public LoginHelper(){}
-    public List<User> logIn(Scanner input, DbConnector dbConnector){
+    public List<User> logIn(Scanner input, DbAdapter dbConnector){
         dbConnector.connect();
         System.out.println("Enter your username");
 		while(!input.hasNext());
@@ -21,7 +23,7 @@ public class LoginHelper {
 		User user = new User(username, password);
 		return dbConnector.getUserDataFromDb(user);
     }
-	public void createNewUser(Scanner input, DbConnector dbConnector){
+	public void createNewUser(Scanner input, DbAdapter dbConnector){
         dbConnector.connect();
         System.out.println("Enter the new Users username");
 		while(!input.hasNext());

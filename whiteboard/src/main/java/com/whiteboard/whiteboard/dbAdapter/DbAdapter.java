@@ -1,4 +1,4 @@
-package com.whiteboard.dbConnector;
+package com.whiteboard.whiteboard.dbAdapter;
 import java.io.File;
 
 import org.tmatesoft.sqljet.core.SqlJetException;
@@ -7,7 +7,7 @@ import org.tmatesoft.sqljet.core.table.ISqlJetTransaction;
 import org.tmatesoft.sqljet.core.table.SqlJetDb;
 
 
-public class DbConnector {
+public class DbAdapter {
     protected static final String DB_NAME = "whiteboard.db";
     protected static final String TABLE_POSTS_NAME = "posts";
     protected static final String TABLE_USERS_NAME = "users";
@@ -30,7 +30,7 @@ public class DbConnector {
 
     protected SqlJetDb db;
 
-    public DbConnector(){
+    public DbAdapter(){
     }
 
     public void initDb() throws SqlJetException {
@@ -76,7 +76,7 @@ public class DbConnector {
     }
 
     protected static void main(String[] args) {
-        DbConnector db = new DbConnector();
+        DbAdapter db = new DbAdapter();
         try {
             db.initDb();
         } catch (Exception e){

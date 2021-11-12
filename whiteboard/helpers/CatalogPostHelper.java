@@ -1,7 +1,9 @@
-package com.whiteboard.helpers;
+package com.whiteboard.whiteboard.helpers;
 
 import java.util.List;
 import java.util.Scanner;
+
+import com.whiteboard.whiteboard.dbAdapter.DbAdapter;
 
 
 
@@ -9,7 +11,7 @@ public class CatalogPostHelper {
     public CatalogPostHelper() {
     }
 
-    public void addContent(Scanner input, DbConnector dbConnector, String alias) {
+    public void addContent(Scanner input, DbAdapter dbConnector, String alias) {
         System.out.println("Enter your note! Finish with enter");
         while (!input.hasNext())
             ;
@@ -20,7 +22,7 @@ public class CatalogPostHelper {
         dbConnector.addContentToDb(content);
     }
 
-    public void deleteContent(Scanner userInput, DbConnector dbConnector, User user) {
+    public void deleteContent(Scanner userInput, DbAdapter dbConnector, User user) {
         System.out.println("Type Id of content to delete");
         List<Content> deletableContent;
         if (user.getUserLevel() < 2) {

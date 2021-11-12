@@ -1,4 +1,4 @@
-package com.whiteboard.API.controllers;
+package com.whiteboard.whiteboard.API.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import org.springframework.stereotype.Component;
 
-import com.whiteboard.API.util.CatalogPostTestGenerator;
-import com.whiteboard.elements.CatalogMetadata;
-import com.whiteboard.elements.CatalogPost;
+import com.whiteboard.whiteboard.elements.CatalogMetadata;
+import com.whiteboard.whiteboard.elements.CatalogPost;
+import com.whiteboard.whiteboard.API.util.CatalogPostTestGenerator;
 
 @Component
 @Path("/post")

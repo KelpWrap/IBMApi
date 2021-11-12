@@ -1,4 +1,4 @@
-package com.whiteboard.API.controllers;
+package com.whiteboard.whiteboard.API.controllers;
 
 
 import java.util.ArrayList;
@@ -16,9 +16,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import org.springframework.stereotype.Component;
 
-import com.whiteboard.API.util.CatalogUserTestGenerator;
-import com.whiteboard.elements.CatalogMetadata;
-import com.whiteboard.elements.CatalogUser;
+import com.whiteboard.whiteboard.elements.CatalogMetadata;
+import com.whiteboard.whiteboard.elements.CatalogUser;
+import com.whiteboard.whiteboard.API.util.CatalogUserTestGenerator;
 
 @Component
 @Path("/users")

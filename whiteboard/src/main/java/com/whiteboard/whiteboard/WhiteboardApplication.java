@@ -1,4 +1,4 @@
-package com.whiteboard;
+package com.whiteboard.whiteboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
