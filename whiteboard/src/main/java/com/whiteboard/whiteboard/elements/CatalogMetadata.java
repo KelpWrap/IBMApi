@@ -27,14 +27,14 @@ public class CatalogMetadata implements Element{
      * 
      */
     @JsonProperty("user_id")
-    @JsonPropertyDescription("Meta data eleement property user_id")
+    @JsonPropertyDescription("Meta data element property user_id")
     private Integer userId;
     /**
      * Meta data eleement property post_id
      * 
      */
     @JsonProperty("post_id")
-    @JsonPropertyDescription("Meta data eleement property post_id")
+    @JsonPropertyDescription("Meta data element property post_id")
     private Integer postId;
     /**
      * Meta data element property name.

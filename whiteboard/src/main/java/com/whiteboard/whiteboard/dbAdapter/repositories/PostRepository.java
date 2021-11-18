@@ -1,13 +1,13 @@
-package com.whiteboard.whiteboard.dbAdapter.helpers;
+package com.whiteboard.whiteboard.dbAdapter.repositories;
 
 import java.util.List;
-
-import com.whiteboard.whiteboard.dbAdapter.DbAdapter;
 import com.whiteboard.whiteboard.elements.CatalogPost;
 
+import org.springframework.stereotype.Repository;
 import org.tmatesoft.sqljet.core.SqlJetException;
 
-public class DbAdapterPostHelper extends DbAdapter {
+@Repository
+public class PostRepository{
 
     
     public List<CatalogPost> getObjects(CatalogPost post) throws SqlJetException {

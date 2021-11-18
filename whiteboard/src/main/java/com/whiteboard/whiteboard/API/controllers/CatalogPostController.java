@@ -13,13 +13,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import com.whiteboard.whiteboard.elements.CatalogMetadata;
 import com.whiteboard.whiteboard.elements.CatalogPost;
 import com.whiteboard.whiteboard.API.util.CatalogPostTestGenerator;
 
-@Component
+@Controller
 @Path("/post")
 @Produces("application/json")
 public class CatalogPostController {

@@ -1,12 +1,13 @@
 package com.whiteboard.whiteboard.dbAdapter;
 import java.io.File;
 
+import org.springframework.stereotype.Repository;
 import org.tmatesoft.sqljet.core.SqlJetException;
 import org.tmatesoft.sqljet.core.SqlJetTransactionMode;
 import org.tmatesoft.sqljet.core.table.ISqlJetTransaction;
 import org.tmatesoft.sqljet.core.table.SqlJetDb;
 
-
+@Repository
 public class DbAdapter {
     protected static final String DB_NAME = "whiteboard.db";
     protected static final String TABLE_POSTS_NAME = "posts";

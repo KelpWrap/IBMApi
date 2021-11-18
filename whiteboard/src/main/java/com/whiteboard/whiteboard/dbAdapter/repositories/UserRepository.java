@@ -1,4 +1,4 @@
-package com.whiteboard.whiteboard.dbAdapter.helpers;
+package com.whiteboard.whiteboard.dbAdapter.repositories;
 
 
 import java.util.Map;
@@ -6,10 +6,10 @@ import java.util.Map;
 
 import com.whiteboard.whiteboard.elements.CatalogUser;
 
-
+import org.springframework.stereotype.Repository;
 import org.tmatesoft.sqljet.core.SqlJetException;
-
-public class DbAdapterUserHelper {
+@Repository
+public class UserRepository {
 
     
     public Map<String, String> getKey(CatalogUser user) throws SqlJetException {
