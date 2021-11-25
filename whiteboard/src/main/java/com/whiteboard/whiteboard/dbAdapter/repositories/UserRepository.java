@@ -22,13 +22,12 @@ public class UserRepository extends DbAdapter{
         ISqlJetTable userTable = super.db.getTable(USERS_TABLE_NAME);
         List<CatalogUser> userList = new ArrayList<CatalogUser>();
         try {
-            ISqlJetCursor userCursor = userTable.lookup(POST_INDEX_FIELD, id);
+            ISqlJetCursor userCursor = userTable.lookup(USER_INDEX, id);
             getUsersFromCursor(userList, userCursor);
         } finally {
             db.commit();
             db.close();
         }
-        
         return userList;
     }
 
@@ -38,7 +37,7 @@ public class UserRepository extends DbAdapter{
         ISqlJetTable userTable = super.db.getTable(USERS_TABLE_NAME);
         List<CatalogUser> userList = new ArrayList<CatalogUser>();
         try {
-            ISqlJetCursor userCursor = userTable.order(POST_INDEX_FIELD);
+            ISqlJetCursor userCursor = userTable.order(userTable.getPrimaryKeyIndexName());
             getUsersFromCursor(userList, userCursor);
         } finally {
             db.commit();
@@ -52,6 +51,10 @@ public class UserRepository extends DbAdapter{
             do {
                 CatalogUser user = new CatalogUser();
                 user.setUserId(userCursor.getString(USER_INDEX_FIELD));
+                user.setUserAlias(userCursor.getString(USER_ALIAS_FIELD));
+                user.setUserName(userCursor.getString(USER_NAME_FIELD));
+                user.setUserHashedPassword(userCursor.getString(USER_HASHED_PASSWORD_FIELD));
+                user.setUserType(userCursor.getString(USER_TYPE_FIELD));
                 userList.add(user);
             } while (userCursor.next());
         }
@@ -64,11 +67,12 @@ public class UserRepository extends DbAdapter{
         db.beginTransaction(SqlJetTransactionMode.WRITE);
         try {
             ISqlJetTable userTable = db.getTable(USERS_TABLE_NAME);
+            userTable.insert(user.getUserId(), user.getUserName(), user.getUserAlias(), user.getUserHashedPassword(), user.getUserType());
         }   
         finally {
             db.commit();
-        }
-        db.close();
+            db.close();
+        } 
     }
 
     
@@ -77,7 +81,7 @@ public class UserRepository extends DbAdapter{
         db.beginTransaction(SqlJetTransactionMode.WRITE);
         try {
             ISqlJetTable userTable = db.getTable(USERS_TABLE_NAME);
-            ISqlJetCursor deleteCursor = userTable.lookup(POST_INDEX_FIELD, user.getPostId());
+            ISqlJetCursor deleteCursor = userTable.lookup(USER_INDEX, user.getUserId());
             while (!deleteCursor.eof()) {
                 deleteCursor.delete();
             }
@@ -85,25 +89,41 @@ public class UserRepository extends DbAdapter{
         }   
         finally {
             db.commit();
+            db.close();
+        }   
+    }
+
+    public void clearTable() throws SqlJetException{
+        db.open();
+        db.beginTransaction(SqlJetTransactionMode.WRITE);
+        try {
+            ISqlJetCursor deleteCursor = db.getTable(USERS_TABLE_NAME).open();
+            while (!deleteCursor.eof()) {
+                deleteCursor.delete();
+            }
+            deleteCursor.close();
         }
-        db.close();
-        
+        finally {
+            db.commit();
+            db.close();
+        }
     }
 
     
-    public void replaceObject(CatalogUser user, CatalogUser updatedPost) throws SqlJetException {
+    public void replaceObject(CatalogUser user, CatalogUser updatedUser) throws SqlJetException {
         db.open();
         db.beginTransaction(SqlJetTransactionMode.WRITE);
         try {
             ISqlJetTable userTable = db.getTable(USERS_TABLE_NAME);
-            ISqlJetCursor cursor = userTable.lookup(USER_INDEX_FIELD, user.getUserId());
+            ISqlJetCursor cursor = userTable.lookup(USER_INDEX, user.getUserId());
             do {
-                cursor.update(updatedPost.getPostId(), updatedPost.getPostUserid(), updatedPost.getPostBody());
+                cursor.update(updatedUser.getUserId(), updatedUser.getUserName(), updatedUser.getUserAlias(), updatedUser.getUserHashedPassword(), updatedUser.getUserType());
             } while (cursor.next());
         } finally {
             db.commit();
+            db.close();
         }
-        db.close();
+
     }  
     
 }

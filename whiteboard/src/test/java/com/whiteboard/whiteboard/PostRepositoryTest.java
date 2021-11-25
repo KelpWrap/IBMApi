@@ -3,12 +3,9 @@ package com.whiteboard.whiteboard;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-
-import com.whiteboard.whiteboard.dbAdapter.DbAdapter;
 import com.whiteboard.whiteboard.dbAdapter.repositories.PostRepository;
 import com.whiteboard.whiteboard.elements.CatalogPost;
 
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,17 +17,14 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 class PostRepositoryTest {
-    @Autowired DbAdapter dbAdapter;
     @Autowired PostRepository postRepository;
 
     @BeforeEach
     public void beforeTest(){
         try{
-            dbAdapter.initDb();
+            postRepository.initDb();
         } 
         catch (Exception e){
-            System.out.println(e.toString());
-            assertEquals(true, false);
         }
     }
 
@@ -40,12 +34,10 @@ class PostRepositoryTest {
             postRepository.clearTable();
         } 
         catch (Exception e){
-            System.out.println(e.toString());
-            assertEquals(true, false);
         }
     }
 
-    
+
     @Test
     public void addPostTest(){
         try {

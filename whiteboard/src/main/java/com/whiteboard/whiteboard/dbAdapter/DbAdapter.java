@@ -35,6 +35,7 @@ public class DbAdapter {
     protected static final String USER_TYPE_FIELD = "type";
 
     protected static final String USER_NAME_PW_INDEX = "name_pw_index";
+    protected static final String USER_INDEX = "user_index";
     
     protected static final String METADATA_USERID_FIELD = "user_id";
     protected static final String METADATA_POSTID_FIELD = "post_id";
@@ -119,8 +120,9 @@ public class DbAdapter {
                 + USER_TYPE_FIELD + " INTEGER NOT NULL)";
             String createTableMetadataQuery =  "CREATE TABLE " + METADATA_TABLE_NAME + " (" + METADATA_POSTID_FIELD + " INT , " 
                 + METADATA_USERID_FIELD + " INT , " + METADATA_NAME_FIELD + " TEXT NOT NULL , " + METADATA_VALUE_FIELD + " TEXT NOT NULL)"; 
-            String createIndexUserQuery = "CREATE INDEX " + USER_NAME_PW_INDEX + " ON " + USERS_TABLE_NAME + "(" + USER_NAME_FIELD + " , " + USER_HASHED_PASSWORD_FIELD + ")"; 
+            String createIndexUserQuery1 = "CREATE INDEX " + USER_NAME_PW_INDEX + " ON " + USERS_TABLE_NAME + "(" + USER_NAME_FIELD + " , " + USER_HASHED_PASSWORD_FIELD + ")"; 
             String createIndexPostQuery = "CREATE INDEX " + POST_INDEX + " ON " + POSTS_TABLE_NAME + "(" + POST_INDEX_FIELD + ")"; 
+            String createIndexUserQuery2 = "CREATE INDEX " + USER_INDEX + " ON " + USERS_TABLE_NAME + "(" + USER_INDEX_FIELD + ")"; 
             
             System.out.println();
             System.out.println(">DB schema queries:");
@@ -128,13 +130,15 @@ public class DbAdapter {
             System.out.println(createTablePostsQuery);
             System.out.println(createTableUsersQuery);
             System.out.println(createTableMetadataQuery);
-            System.out.println(createIndexUserQuery);
+            System.out.println(createIndexUserQuery1);
+            System.out.println(createIndexUserQuery2);
             System.out.println(createIndexPostQuery);
             
             db.createTable(createTablePostsQuery);
             db.createTable(createTableUsersQuery);
             db.createTable(createTableMetadataQuery);
-            db.createIndex(createIndexUserQuery);
+            db.createIndex(createIndexUserQuery1);
+            db.createIndex(createIndexUserQuery2);
             db.createIndex(createIndexPostQuery);
             System.out.println(">Database Created");
         } finally {
