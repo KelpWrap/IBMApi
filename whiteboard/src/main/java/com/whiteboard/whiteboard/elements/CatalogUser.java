@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "user-type",
     "meta-data"
 })
-public class CatalogUser implements Element{
+public class CatalogUser implements DbEntity{
 
     /**
      * The unique identifier for a user.

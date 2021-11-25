@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "name",
     "value"
 })
-public class CatalogMetadata implements Element{
+public class CatalogMetadata implements DbEntity{
 
     /**
      * Meta data eleement property user_id

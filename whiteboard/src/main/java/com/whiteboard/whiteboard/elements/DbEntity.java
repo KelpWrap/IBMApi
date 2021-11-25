@@ -1,6 +1,6 @@
 package com.whiteboard.whiteboard.elements;
 
-public interface Element {
+public interface DbEntity {
 
     public String toString();
 

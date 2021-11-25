@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.whiteboard.whiteboard.API.controllers.CatalogPostController;
 import com.whiteboard.whiteboard.API.controllers.CatalogUserController;
+import com.whiteboard.whiteboard.dbAdapter.repositories.PostRepository;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,9 +25,10 @@ class WhiteboardApplicationTests {
 	}
 
 	@Test
-	public void checkBeansInApplicationContext(){
+	void checkBeansInApplicationContext(){
 		assertNotNull(applicationContext.getBean(CatalogPostController.class));
 		assertNotNull(applicationContext.getBean(CatalogUserController.class));
+		assertNotNull(applicationContext.getBean(PostRepository.class));
 	}
 
 }

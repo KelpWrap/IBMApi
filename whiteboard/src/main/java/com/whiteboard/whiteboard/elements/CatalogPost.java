@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "post-body",
     "meta-data"
 })
-public class CatalogPost implements Element{
+public class CatalogPost implements DbEntity{
 
     /**
      * The unique identifier for a post.
