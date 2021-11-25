@@ -83,7 +83,7 @@ public class PostRepository extends DbAdapter{
         db.beginTransaction(SqlJetTransactionMode.WRITE);
         try {
             ISqlJetTable postTable = db.getTable(POSTS_TABLE_NAME);
-            ISqlJetCursor deleteCursor = postTable.lookup(POST_INDEX_FIELD, post.getPostId());
+            ISqlJetCursor deleteCursor = postTable.lookup(POST_INDEX, post.getPostId());
             while (!deleteCursor.eof()) {
                 deleteCursor.delete();
             }
@@ -119,7 +119,7 @@ public class PostRepository extends DbAdapter{
         db.beginTransaction(SqlJetTransactionMode.WRITE);
         try {
             ISqlJetTable postTable = db.getTable(POSTS_TABLE_NAME);
-            ISqlJetCursor cursor = postTable.lookup(POST_INDEX_FIELD, post.getPostId());
+            ISqlJetCursor cursor = postTable.lookup(POST_INDEX, post.getPostId());
             do {
                 cursor.update(updatedPost.getPostId(), updatedPost.getPostUserid(), updatedPost.getPostBody());
             } while (cursor.next());
