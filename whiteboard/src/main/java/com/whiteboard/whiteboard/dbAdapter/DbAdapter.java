@@ -3,14 +3,11 @@ import java.io.File;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.tmatesoft.sqljet.core.SqlJetException;
 import org.tmatesoft.sqljet.core.SqlJetTransactionMode;
 import org.tmatesoft.sqljet.core.schema.ISqlJetIndexDef;
-import org.tmatesoft.sqljet.core.schema.ISqlJetTableDef;
 import org.tmatesoft.sqljet.core.table.ISqlJetCursor;
-import org.tmatesoft.sqljet.core.table.ISqlJetTable;
 import org.tmatesoft.sqljet.core.table.ISqlJetTransaction;
 import org.tmatesoft.sqljet.core.table.SqlJetDb;
 
@@ -65,10 +62,8 @@ public class DbAdapter {
     public void deleteDb() throws SqlJetException {
         db.open();
         try {      
-            Set<String> indices = db.getSchema().getIndexNames();
             Set<String> tables = db.getSchema().getTableNames();
             for (String tableName : tables) {
-               ISqlJetTableDef tableDef = db.getSchema().getTable(tableName);
                Set<ISqlJetIndexDef> tableIndices = db.getSchema().getIndexes(tableName);
                for (ISqlJetIndexDef indexDef : tableIndices) {
                   if (!indexDef.isImplicit()) {
@@ -89,7 +84,6 @@ public class DbAdapter {
         try {
             Set<String> tables = db.getSchema().getTableNames();
             for (String tableName : tables) {
-                ISqlJetTable table = db.getTable(tableName);
                 ISqlJetCursor clearCursor = db.getTable(tableName).open();
                 while (!clearCursor.eof()) {
                     clearCursor.delete();
@@ -113,13 +107,13 @@ public class DbAdapter {
         }, SqlJetTransactionMode.WRITE);
         db.beginTransaction(SqlJetTransactionMode.WRITE);
         try {            
-            String createTablePostsQuery = "CREATE TABLE " + POSTS_TABLE_NAME + " (" + POST_INDEX_FIELD + " INT IDENTITY NOT NULL PRIMARY KEY , " 
+            String createTablePostsQuery = "CREATE TABLE " + POSTS_TABLE_NAME + " (" + POST_INDEX_FIELD + " INTEGER auto_increment PRIMARY KEY, " 
                 + POST_USER_ID_FIELD + " TEXT NOT NULL, " + POST_BODY_FIELD + " TEXT NOT NULL)";
-            String createTableUsersQuery = "CREATE TABLE " + USERS_TABLE_NAME + " (" + USER_INDEX_FIELD + " INT IDENTITY NOT NULL PRIMARY KEY , " 
+            String createTableUsersQuery = "CREATE TABLE " + USERS_TABLE_NAME + " (" + USER_INDEX_FIELD + " INTEGER AUTO_INCREMENT PRIMARY KEY, " 
                 + USER_NAME_FIELD + " TEXT NOT NULL, " + USER_ALIAS_FIELD + " TEXT NOT NULL , " + USER_HASHED_PASSWORD_FIELD + " TEXT NOT NULL , " 
                 + USER_TYPE_FIELD + " INTEGER NOT NULL)";
-            String createTableMetadataQuery =  "CREATE TABLE " + METADATA_TABLE_NAME + " (" + METADATA_POSTID_FIELD + " INT , " 
-                + METADATA_USERID_FIELD + " INT , " + METADATA_NAME_FIELD + " TEXT NOT NULL , " + METADATA_VALUE_FIELD + " TEXT NOT NULL)"; 
+            String createTableMetadataQuery =  "CREATE TABLE " + METADATA_TABLE_NAME + " (" + METADATA_POSTID_FIELD + " INTEGER , " 
+                + METADATA_USERID_FIELD + " INTEGER , " + METADATA_NAME_FIELD + " TEXT NOT NULL , " + METADATA_VALUE_FIELD + " TEXT NOT NULL)"; 
             String createIndexUserQuery1 = "CREATE INDEX " + USER_NAME_PW_INDEX + " ON " + USERS_TABLE_NAME + "(" + USER_NAME_FIELD + " , " + USER_HASHED_PASSWORD_FIELD + ")"; 
             String createIndexPostQuery = "CREATE INDEX " + POST_INDEX + " ON " + POSTS_TABLE_NAME + "(" + POST_INDEX_FIELD + ")"; 
             String createIndexUserQuery2 = "CREATE INDEX " + USER_INDEX + " ON " + USERS_TABLE_NAME + "(" + USER_INDEX_FIELD + ")"; 
@@ -141,7 +135,9 @@ public class DbAdapter {
             db.createIndex(createIndexUserQuery2);
             db.createIndex(createIndexPostQuery);
             System.out.println(">Database Created");
-        } finally {
+        } catch (Exception e) {
+         System.out.println(e.toString());
+        }finally {
             db.commit();
             db.close();
         }

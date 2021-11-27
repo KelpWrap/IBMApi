@@ -20,7 +20,7 @@ public class CatalogUserTestGenerator {
           item.setValue("value" + k);
           metaData.add(item);
         }
-        user.setUserId(Integer.toString(i));
+        user.setUserId(i);
         user.setMetaData(metaData);
         user.setUserAlias(Integer.toString(i));
         user.setUserHashedPassword("userHashedPassword"+i);
@@ -30,18 +30,18 @@ public class CatalogUserTestGenerator {
       return users;
     }
 
-    public static CatalogUser generateTestUser(String userId){
+    public static CatalogUser generateTestUser(int userId){
         CatalogUser user = new CatalogUser();
         List<CatalogMetadata> metaData = new ArrayList<CatalogMetadata>();
         for(int k = 0; k < 10; k++) {
           CatalogMetadata item = new CatalogMetadata();
-          item.setName("name"+k);
+          item.setName("name" + k);
           item.setValue("value" + k);
           metaData.add(item);
         }
         user.setUserId(userId);
         user.setMetaData(metaData);
-        user.setUserAlias(userId);
+        user.setUserAlias("Alias " + userId);
         user.setUserHashedPassword("userHashedPassword"+userId);
         user.setUserType(SecurityEnum.USER.toString());
 

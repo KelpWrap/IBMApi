@@ -2,6 +2,7 @@ package com.whiteboard.whiteboard.dbAdapter.repositories;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import org.tmatesoft.sqljet.core.table.ISqlJetTable;
 @Repository
 
 public class UserRepository extends DbAdapter{
-    public List<CatalogUser> getObjectsById(String id) throws SqlJetException {
+    public List<CatalogUser> getObjectsById(int id) throws SqlJetException {
         db.open();
         db.beginTransaction(SqlJetTransactionMode.READ_ONLY);
         ISqlJetTable userTable = super.db.getTable(USERS_TABLE_NAME);
@@ -37,7 +38,7 @@ public class UserRepository extends DbAdapter{
         ISqlJetTable userTable = super.db.getTable(USERS_TABLE_NAME);
         List<CatalogUser> userList = new ArrayList<CatalogUser>();
         try {
-            ISqlJetCursor userCursor = userTable.order(userTable.getPrimaryKeyIndexName());
+            ISqlJetCursor userCursor = userTable.open();
             getUsersFromCursor(userList, userCursor);
         } finally {
             db.commit();
@@ -50,7 +51,7 @@ public class UserRepository extends DbAdapter{
         if (!userCursor.eof()) {
             do {
                 CatalogUser user = new CatalogUser();
-                user.setUserId(userCursor.getString(USER_INDEX_FIELD));
+                user.setUserId(Math.toIntExact(userCursor.getRowId()));
                 user.setUserAlias(userCursor.getString(USER_ALIAS_FIELD));
                 user.setUserName(userCursor.getString(USER_NAME_FIELD));
                 user.setUserHashedPassword(userCursor.getString(USER_HASHED_PASSWORD_FIELD));
@@ -62,17 +63,24 @@ public class UserRepository extends DbAdapter{
     }
 
     
-    public void addObject(CatalogUser user) throws SqlJetException {
+    public int addObject(CatalogUser user) throws SqlJetException {
         db.open();
         db.beginTransaction(SqlJetTransactionMode.WRITE);
+        int id;
         try {
             ISqlJetTable userTable = db.getTable(USERS_TABLE_NAME);
-            userTable.insert(user.getUserId(), user.getUserName(), user.getUserAlias(), user.getUserHashedPassword(), user.getUserType());
+            Map<String, Object> values = new HashMap<>();
+            values.put(USER_NAME_FIELD, user.getUsername());
+            values.put(USER_ALIAS_FIELD, user.getUserAlias());
+            values.put(USER_HASHED_PASSWORD_FIELD, user.getUserHashedPassword());
+            values.put(USER_TYPE_FIELD, user.getUserType());
+            id = Math.toIntExact(userTable.insertByFieldNames(values));
         }   
         finally {
             db.commit();
             db.close();
         } 
+        return id;
     }
 
     
@@ -117,7 +125,7 @@ public class UserRepository extends DbAdapter{
             ISqlJetTable userTable = db.getTable(USERS_TABLE_NAME);
             ISqlJetCursor cursor = userTable.lookup(USER_INDEX, user.getUserId());
             do {
-                cursor.update(updatedUser.getUserId(), updatedUser.getUserName(), updatedUser.getUserAlias(), updatedUser.getUserHashedPassword(), updatedUser.getUserType());
+                cursor.update(updatedUser.getUserId(), updatedUser.getUsername(), updatedUser.getUserAlias(), updatedUser.getUserHashedPassword(), updatedUser.getUserType());
             } while (cursor.next());
         } finally {
             db.commit();

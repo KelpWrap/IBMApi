@@ -32,14 +32,14 @@ public class CatalogUser implements DbEntity{
      */
     @JsonProperty("user-id")
     @JsonPropertyDescription("The unique identifier for a user.")
-    private String userId;
+    private int userId;
     /**
      * User name.
      * 
      */
     @JsonProperty("user-name")
     @JsonPropertyDescription("User name.")
-    private String userName;
+    private String username;
     /**
      * Users name on posts.
      * 
@@ -74,7 +74,7 @@ public class CatalogUser implements DbEntity{
      * 
      */
     @JsonProperty("user-id")
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -83,7 +83,7 @@ public class CatalogUser implements DbEntity{
      * 
      */
     @JsonProperty("user-id")
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -92,8 +92,8 @@ public class CatalogUser implements DbEntity{
      * 
      */
     @JsonProperty("user-name")
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
@@ -101,8 +101,8 @@ public class CatalogUser implements DbEntity{
      * 
      */
     @JsonProperty("user-name")
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     /**
@@ -183,11 +183,11 @@ public class CatalogUser implements DbEntity{
         sb.append(CatalogUser.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("userId");
         sb.append('=');
-        sb.append(((this.userId == null)?"<null>":this.userId));
+        sb.append(((this.userId == 0)?"<null>":this.userId));
         sb.append(',');
-        sb.append("userName");
+        sb.append("username");
         sb.append('=');
-        sb.append(((this.userName == null)?"<null>":this.userName));
+        sb.append(((this.username == null)?"<null>":this.username));
         sb.append(',');
         sb.append("userAlias");
         sb.append('=');
@@ -220,8 +220,8 @@ public class CatalogUser implements DbEntity{
         result = ((result* 31)+((this.metaData == null)? 0 :this.metaData.hashCode()));
         result = ((result* 31)+((this.userAlias == null)? 0 :this.userAlias.hashCode()));
         result = ((result* 31)+((this.userType == null)? 0 :this.userType.hashCode()));
-        result = ((result* 31)+((this.userName == null)? 0 :this.userName.hashCode()));
-        result = ((result* 31)+((this.userId == null)? 0 :this.userId.hashCode()));
+        result = ((result* 31)+((this.username == null)? 0 :this.username.hashCode()));
+        result = ((result* 31)+((this.userId== 0)? 0 :this.userId));
         return result;
     }
 
@@ -234,7 +234,7 @@ public class CatalogUser implements DbEntity{
             return false;
         }
         CatalogUser rhs = ((CatalogUser) other);
-        return (((((((this.userHashedPassword == rhs.userHashedPassword)||((this.userHashedPassword!= null)&&this.userHashedPassword.equals(rhs.userHashedPassword)))&&((this.metaData == rhs.metaData)||((this.metaData!= null)&&this.metaData.equals(rhs.metaData))))&&((this.userAlias == rhs.userAlias)||((this.userAlias!= null)&&this.userAlias.equals(rhs.userAlias))))&&((this.userType == rhs.userType)||((this.userType!= null)&&this.userType.equals(rhs.userType))))&&((this.userName == rhs.userName)||((this.userName!= null)&&this.userName.equals(rhs.userName))))&&((this.userId == rhs.userId)||((this.userId!= null)&&this.userId.equals(rhs.userId))));
+        return (((((((this.userHashedPassword == rhs.userHashedPassword)||((this.userHashedPassword!= null)&&this.userHashedPassword.equals(rhs.userHashedPassword)))&&((this.metaData == rhs.metaData)||((this.metaData!= null)&&this.metaData.equals(rhs.metaData))))&&((this.userAlias == rhs.userAlias)||((this.userAlias!= null)&&this.userAlias.equals(rhs.userAlias))))&&((this.userType == rhs.userType)||((this.userType!= null)&&this.userType.equals(rhs.userType))))&&((this.username == rhs.username)||((this.username!= null)&&this.username.equals(rhs.username))))&&((this.userId == rhs.userId)||((this.userId!= 0)&&this.userId ==rhs.userId)));
     }
 
 }

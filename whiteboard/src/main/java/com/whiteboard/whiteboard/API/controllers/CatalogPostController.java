@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -25,7 +26,7 @@ import com.whiteboard.whiteboard.API.util.CatalogPostTestGenerator;
 public class CatalogPostController {
   @GET
   @Path("/{post-id}") 
-  public CatalogPost getPost(@PathParam("post-id") String postId){
+  public CatalogPost getPost(@PathParam("post-id") int postId){
     return CatalogPostTestGenerator.generateTestPost(postId);
   }
 
@@ -44,6 +45,7 @@ public class CatalogPostController {
     List<CatalogPost> returnImages = CatalogPostTestGenerator.generateTestPosts();;
     return returnImages;
   }
+
 
   @PUT
   @Path("/{post-id}")

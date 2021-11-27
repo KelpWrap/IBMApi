@@ -39,12 +39,14 @@ class UserRepositoryTest {
 
 
     @Test
-    public void addPostTest(){
+    public void addUserTest(){
         try {
             CatalogUser testUser = createTestUser(1);
             userRepository.addObject(testUser);
+            CatalogUser testUser2 = createTestUser(2);
+            userRepository.addObject(testUser2);
             List<CatalogUser> postList = userRepository.getObjects();
-            assertEquals(postList.size() == 1, true);
+            assertEquals(postList.size() == 2, true);
         } catch (Exception e){
             System.out.println(e.toString());
             assertEquals(true, false);
@@ -52,11 +54,11 @@ class UserRepositoryTest {
     }
 
     @Test
-    public void lookUpPostByIdTest(){
+    public void lookUpUserByIdTest(){
         try {
             CatalogUser testUser = createTestUser(1);
-            userRepository.addObject(testUser);
-            List<CatalogUser> postList = userRepository.getObjectsById(testUser.getUserId());
+            int id = userRepository.addObject(testUser);
+            List<CatalogUser> postList = userRepository.getObjectsById(id);
             assertEquals(postList.size() == 1, true);
         } catch (Exception e){
             System.out.println(e.toString());
@@ -65,14 +67,14 @@ class UserRepositoryTest {
     }
 
     @Test
-    public void updatePostTest(){
+    public void updateUserTest(){
         CatalogUser testUser = createTestUser(1);
         CatalogUser testUserUpdated = createTestUser(1);
         testUserUpdated.setUserAlias("updated Alias");
         try {
-            userRepository.addObject(testUser);
+            int id = userRepository.addObject(testUser);
             userRepository.replaceObject(testUser, testUserUpdated);
-            List<CatalogUser> postList = userRepository.getObjectsById(testUserUpdated.getUserId());
+            List<CatalogUser> postList = userRepository.getObjectsById(id);
             assertEquals("updated Alias", postList.get(0).getUserAlias());
         } catch (Exception e){
             assertEquals(true, false);
@@ -120,7 +122,7 @@ class UserRepositoryTest {
 
     private CatalogUser createTestUser(int userId) {
         CatalogUser user = new CatalogUser();
-        user.setUserId(Integer.toString(userId));
+        user.setUserId(userId);
         user.setUserName("test" + Integer.toString(userId));
         user.setUserAlias("testAlias" + Integer.toString(userId));
         user.setUserHashedPassword("testPassword" + Integer.toString(userId));

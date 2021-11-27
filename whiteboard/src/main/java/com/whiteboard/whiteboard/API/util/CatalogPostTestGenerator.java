@@ -19,7 +19,7 @@ public class CatalogPostTestGenerator {
           item.setValue("value" + k);
           metaData.add(item);
         }
-        post.setPostId(Integer.toString(i));
+        post.setPostId(i);
         post.setMetaData(metaData);
         post.setPostBody("textBody"+i);
         post.setPostUserid("postUserid"+i);
@@ -28,7 +28,7 @@ public class CatalogPostTestGenerator {
       return posts;
     }
 
-    public static CatalogPost generateTestPost(String postId){
+    public static CatalogPost generateTestPost(int postId){
         CatalogPost post = new CatalogPost();
         List<CatalogMetadata> metaData = new ArrayList<CatalogMetadata>();
         for(int k = 0; k < 10; k++) {

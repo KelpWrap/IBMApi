@@ -30,7 +30,7 @@ public class CatalogPost implements DbEntity{
      */
     @JsonProperty("post-id")
     @JsonPropertyDescription("The unique identifier for a post.")
-    private String postId;
+    private int postId;
     /**
      * The unique Identifier of the author.
      * 
@@ -58,7 +58,7 @@ public class CatalogPost implements DbEntity{
      * 
      */
     @JsonProperty("post-id")
-    public String getPostId() {
+    public int getPostId() {
         return postId;
     }
 
@@ -67,7 +67,7 @@ public class CatalogPost implements DbEntity{
      * 
      */
     @JsonProperty("post-id")
-    public void setPostId(String postId) {
+    public void setPostId(int postId) {
         this.postId = postId;
     }
 
@@ -131,7 +131,7 @@ public class CatalogPost implements DbEntity{
         sb.append(CatalogPost.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("postId");
         sb.append('=');
-        sb.append(((this.postId == null)?"<null>":this.postId));
+        sb.append(((this.postId == 0)?"<null>":this.postId));
         sb.append(',');
         sb.append("postUserid");
         sb.append('=');
@@ -158,7 +158,7 @@ public class CatalogPost implements DbEntity{
         int result = 1;
         result = ((result* 31)+((this.postUserid == null)? 0 :this.postUserid.hashCode()));
         result = ((result* 31)+((this.metaData == null)? 0 :this.metaData.hashCode()));
-        result = ((result* 31)+((this.postId == null)? 0 :this.postId.hashCode()));
+        result = ((result* 31)+((this.postId == 0)? 0 :this.postId));
         result = ((result* 31)+((this.postBody == null)? 0 :this.postBody.hashCode()));
         return result;
     }
@@ -172,7 +172,7 @@ public class CatalogPost implements DbEntity{
             return false;
         }
         CatalogPost rhs = ((CatalogPost) other);
-        return (((((this.postUserid == rhs.postUserid)||((this.postUserid!= null)&&this.postUserid.equals(rhs.postUserid)))&&((this.metaData == rhs.metaData)||((this.metaData!= null)&&this.metaData.equals(rhs.metaData))))&&((this.postId == rhs.postId)||((this.postId!= null)&&this.postId.equals(rhs.postId))))&&((this.postBody == rhs.postBody)||((this.postBody!= null)&&this.postBody.equals(rhs.postBody))));
+        return (((((this.postUserid == rhs.postUserid)||((this.postUserid!= null)&&this.postUserid.equals(rhs.postUserid)))&&((this.metaData == rhs.metaData)||((this.metaData!= null)&&this.metaData.equals(rhs.metaData))))&&((this.postId == rhs.postId)||((this.postId!= 0)&&this.postId == rhs.postId)))&&((this.postBody == rhs.postBody)||((this.postBody!= null)&&this.postBody.equals(rhs.postBody))));
     }
 
 }

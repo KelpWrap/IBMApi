@@ -120,7 +120,7 @@ class PostRepositoryTest {
 
     private CatalogPost createTestPost(int i, int userId) {
         CatalogPost post = new CatalogPost();
-        post.setPostId(Integer.toString(i));
+        post.setPostId(i);
         post.setPostUserid("user" + Integer.toString(userId));
         post.setPostBody("testBody " + Integer.toString(i));
         return post;

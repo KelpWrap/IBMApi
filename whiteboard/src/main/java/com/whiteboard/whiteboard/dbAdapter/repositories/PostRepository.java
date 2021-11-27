@@ -17,7 +17,7 @@ import org.tmatesoft.sqljet.core.table.ISqlJetTable;
 public class PostRepository extends DbAdapter{
     
     
-    public List<CatalogPost> getObjectsById(String id) throws SqlJetException {
+    public List<CatalogPost> getObjectsById(int id) throws SqlJetException {
         db.open();
         db.beginTransaction(SqlJetTransactionMode.READ_ONLY);
         ISqlJetTable postTable = super.db.getTable(POSTS_TABLE_NAME);
@@ -40,7 +40,7 @@ public class PostRepository extends DbAdapter{
         ISqlJetTable postTable = super.db.getTable(POSTS_TABLE_NAME);
         List<CatalogPost> postList = new ArrayList<CatalogPost>();
         try {
-            ISqlJetCursor postCursor = postTable.order(postTable.getPrimaryKeyIndexName());
+            ISqlJetCursor postCursor = postTable.open();
             getPostsFromCursor(postList, postCursor);
         } finally {
             db.commit();
@@ -54,7 +54,7 @@ public class PostRepository extends DbAdapter{
         if (!postCursor.eof()) {
             do {
                 CatalogPost post = new CatalogPost();
-                post.setPostId(postCursor.getString(POST_INDEX_FIELD));
+                post.setPostId(Math.toIntExact(postCursor.getRowId()));
                 post.setPostBody(postCursor.getString(POST_BODY_FIELD));
                 post.setPostUserid(postCursor.getString(POST_USER_ID_FIELD));
                 postList.add(post);
@@ -69,7 +69,7 @@ public class PostRepository extends DbAdapter{
         db.beginTransaction(SqlJetTransactionMode.WRITE);
         try {
             ISqlJetTable postTable = db.getTable(POSTS_TABLE_NAME);
-            postTable.insert(post.getPostId(), post.getPostUserid(), post.getPostBody());
+            postTable.insert(post.getPostUserid(), post.getPostBody());
         }   
         finally {
             db.commit();
