@@ -1,8 +1,9 @@
 package com.whiteboard.whiteboard.dbAdapter.repositories;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import com.whiteboard.whiteboard.dbAdapter.DbAdapter;
 import com.whiteboard.whiteboard.elements.CatalogPost;
@@ -64,17 +65,22 @@ public class PostRepository extends DbAdapter{
     }
 
     
-    public void addObject(CatalogPost post) throws SqlJetException {
+    public int addObject(CatalogPost post) throws SqlJetException {
         db.open();
         db.beginTransaction(SqlJetTransactionMode.WRITE);
+        int id;
         try {
             ISqlJetTable postTable = db.getTable(POSTS_TABLE_NAME);
-            postTable.insert(post.getPostUserid(), post.getPostBody());
+            Map<String, Object> values = new HashMap<>();
+            values.put(POST_USER_ID_FIELD, post.getPostUserid());
+            values.put(POST_BODY_FIELD, post.getPostBody());
+            id = Math.toIntExact(postTable.insertByFieldNames(values));
         }   
         finally {
             db.commit();
             db.close();
         }
+        return id; 
     }
 
     
